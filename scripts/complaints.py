@@ -4,6 +4,9 @@ This program prints out the top 10 311 complaints in three neighborhoods:
 - Corona, Queens
 - Flushing, Queens
 
+It also maps a random sample of 1000 of the top 10 complaint types for each 
+neighborhood, classifying each complaint type with its own color.
+
 csv file was from https://nycopendata.socrata.com/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9/data
 Filtered by 'Incident Zip' for 11368, 11354, and 11355
 """
@@ -13,7 +16,8 @@ import folium
 from folium.plugins import MarkerCluster
 import math
 
-complaints = pd.read_csv('../data/311_Service_Requests_from_2010_to_Present.csv', low_memory=False)
+complaints = pd.read_csv('../data/311_Service_Requests_from_2010_to_Present.csv', 
+            low_memory=False)
 # # display column names and data types
 # print(complaints.dtypes)
 
