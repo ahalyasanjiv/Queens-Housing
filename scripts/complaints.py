@@ -13,7 +13,6 @@ Filtered by 'Incident Zip' for 11368, 11354, and 11355
 
 import pandas as pd
 import folium
-from folium.plugins import MarkerCluster
 import math
 
 complaints = pd.read_csv('../data/311_Service_Requests_from_2010_to_Present.csv', 
