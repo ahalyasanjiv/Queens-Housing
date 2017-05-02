@@ -1,0 +1,631 @@
+
+        <!DOCTYPE html>
+        <head>
+            
+        
+            <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        
+            
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+        
+        
+        
+            
+        
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        
+        
+        
+            
+        
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        
+        
+        
+            
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.min.js"></script>
+        
+        
+        
+            
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster-src.js"></script>
+        
+        
+        
+            
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js"></script>
+        
+        
+        
+            
+        
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+        
+        
+        
+            
+        
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+        
+        
+        
+            
+        
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+        
+        
+        
+            
+        
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
+        
+        
+        
+            
+        
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css" />
+        
+        
+        
+            
+        
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css" />
+        
+        
+        
+            
+        
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css" />
+        
+        
+        
+            
+        
+            <link rel="stylesheet" href="https://raw.githubusercontent.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css" />
+        
+        
+        
+            
+            <style>
+
+            html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                }
+
+            #map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+            
+        
+            
+            <style> #map_aa72766d0c6442b9a7a6b760aeefbf1d {
+                position : relative;
+                width : 100.0%;
+                height: 100.0%;
+                left: 0.0%;
+                top: 0.0%;
+                }
+            </style>
+        
+        
+        
+        </head>
+        <body>
+            
+        
+            
+            <div class="folium-map" id="map_aa72766d0c6442b9a7a6b760aeefbf1d" ></div>
+        
+        
+        
+        </body>
+        <script>
+            
+        
+            
+
+            var southWest = L.latLng(-90, -180);
+            var northEast = L.latLng(90, 180);
+            var bounds = L.latLngBounds(southWest, northEast);
+
+            var map_aa72766d0c6442b9a7a6b760aeefbf1d = L.map('map_aa72766d0c6442b9a7a6b760aeefbf1d', {
+                                           center:[40.7599029,-73.843553],
+                                           zoom: 13,
+                                           maxBounds: bounds,
+                                           layers: [],
+                                           crs: L.CRS.EPSG3857
+                                         });
+            
+        
+        
+            
+            var tile_layer_6bbf05798f7a4235ae0472387a58df54 = L.tileLayer(
+                'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                {
+                    maxZoom: 18,
+                    minZoom: 1,
+                    attribution: 'Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.',
+                    detectRetina: false
+                    }
+                ).addTo(map_aa72766d0c6442b9a7a6b760aeefbf1d);
+
+        
+        
+            
+
+            var marker_7d6910c218e64a2eb5a9d130950549e8 = L.marker(
+                [40.757476,-73.829116],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(map_aa72766d0c6442b9a7a6b760aeefbf1d);
+            
+        
+            
+            var popup_ace50d437da2421982f0cf78332453c1 = L.popup({maxWidth: '300'});
+
+            
+                var html_873aec87348747108af5535b4339011a = $('         <div id="html_873aec87348747108af5535b4339011a"                 style="width: 100.0%; height: 100.0%;">                 SPARKLING SUPERMARKET  </div>                 ')[0];
+                popup_ace50d437da2421982f0cf78332453c1.setContent(html_873aec87348747108af5535b4339011a);
+            
+
+            marker_7d6910c218e64a2eb5a9d130950549e8.bindPopup(popup_ace50d437da2421982f0cf78332453c1);
+
+            
+        
+        
+            
+
+            var marker_10a828459ead40ce8414d5d41e996d1c = L.marker(
+                [40.739779,-73.815124],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(map_aa72766d0c6442b9a7a6b760aeefbf1d);
+            
+        
+            
+            var popup_865215b65ee04cb88a323fa7a08c2fac = L.popup({maxWidth: '300'});
+
+            
+                var html_556f7bd24b8644ccab0b44f01306c477 = $('         <div id="html_556f7bd24b8644ccab0b44f01306c477"                 style="width: 100.0%; height: 100.0%;">                 DHYIA GROCERY AND CONVE</div>                 ')[0];
+                popup_865215b65ee04cb88a323fa7a08c2fac.setContent(html_556f7bd24b8644ccab0b44f01306c477);
+            
+
+            marker_10a828459ead40ce8414d5d41e996d1c.bindPopup(popup_865215b65ee04cb88a323fa7a08c2fac);
+
+            
+        
+        
+            
+
+            var marker_91e5f3d42efe43e58010324c5cd59585 = L.marker(
+                [40.77363,-73.750607],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(map_aa72766d0c6442b9a7a6b760aeefbf1d);
+            
+        
+            
+            var popup_a2db6c8b1ec64519a2a178de16caa532 = L.popup({maxWidth: '300'});
+
+            
+                var html_5a32107f17694763b59d877eff1e9067 = $('         <div id="html_5a32107f17694763b59d877eff1e9067"                 style="width: 100.0%; height: 100.0%;">                 SWEET HOME GROCERY     </div>                 ')[0];
+                popup_a2db6c8b1ec64519a2a178de16caa532.setContent(html_5a32107f17694763b59d877eff1e9067);
+            
+
+            marker_91e5f3d42efe43e58010324c5cd59585.bindPopup(popup_a2db6c8b1ec64519a2a178de16caa532);
+
+            
+        
+        
+            
+
+            var marker_79e7ee36456e447fa3e21a581f305b6f = L.marker(
+                [40.771507,-73.815502],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(map_aa72766d0c6442b9a7a6b760aeefbf1d);
+            
+        
+            
+            var popup_3527fbe24f214ee986e62e463c18f332 = L.popup({maxWidth: '300'});
+
+            
+                var html_bb38636008c84170a2d58cd75d113d95 = $('         <div id="html_bb38636008c84170a2d58cd75d113d95"                 style="width: 100.0%; height: 100.0%;">                 AAYAAN                 </div>                 ')[0];
+                popup_3527fbe24f214ee986e62e463c18f332.setContent(html_bb38636008c84170a2d58cd75d113d95);
+            
+
+            marker_79e7ee36456e447fa3e21a581f305b6f.bindPopup(popup_3527fbe24f214ee986e62e463c18f332);
+
+            
+        
+        
+            
+
+            var marker_6a0317dadc944133a0d4d76af8d15169 = L.marker(
+                [40.773631,-73.7506],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(map_aa72766d0c6442b9a7a6b760aeefbf1d);
+            
+        
+            
+            var popup_da409828a1114c9ea885e2075200a92c = L.popup({maxWidth: '300'});
+
+            
+                var html_aaa5331790434b65b4b8bca2ce115c5c = $('         <div id="html_aaa5331790434b65b4b8bca2ce115c5c"                 style="width: 100.0%; height: 100.0%;">                 CHENG BABY SHOP        </div>                 ')[0];
+                popup_da409828a1114c9ea885e2075200a92c.setContent(html_aaa5331790434b65b4b8bca2ce115c5c);
+            
+
+            marker_6a0317dadc944133a0d4d76af8d15169.bindPopup(popup_da409828a1114c9ea885e2075200a92c);
+
+            
+        
+        
+            
+
+            var marker_ccb314741c4546b4b0ffb5be46f64144 = L.marker(
+                [40.76752,-73.836674],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(map_aa72766d0c6442b9a7a6b760aeefbf1d);
+            
+        
+            
+            var popup_9683d07d19d944b6bfed38ef4743b6c5 = L.popup({maxWidth: '300'});
+
+            
+                var html_6e87a5437a354a48adda9d7a5beb2186 = $('         <div id="html_6e87a5437a354a48adda9d7a5beb2186"                 style="width: 100.0%; height: 100.0%;">                 AB SEAFOOD TRADING     </div>                 ')[0];
+                popup_9683d07d19d944b6bfed38ef4743b6c5.setContent(html_6e87a5437a354a48adda9d7a5beb2186);
+            
+
+            marker_ccb314741c4546b4b0ffb5be46f64144.bindPopup(popup_9683d07d19d944b6bfed38ef4743b6c5);
+
+            
+        
+        
+            
+
+            var marker_353229eea4f445da9ac9731bb8387fcd = L.marker(
+                [40.762718,-73.831824],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(map_aa72766d0c6442b9a7a6b760aeefbf1d);
+            
+        
+            
+            var popup_e7a95cc516704a23a5845101d904e27e = L.popup({maxWidth: '300'});
+
+            
+                var html_73db2d2ea2a443ab8ee7da7385fa1f3f = $('         <div id="html_73db2d2ea2a443ab8ee7da7385fa1f3f"                 style="width: 100.0%; height: 100.0%;">                 LJ GROCERY             </div>                 ')[0];
+                popup_e7a95cc516704a23a5845101d904e27e.setContent(html_73db2d2ea2a443ab8ee7da7385fa1f3f);
+            
+
+            marker_353229eea4f445da9ac9731bb8387fcd.bindPopup(popup_e7a95cc516704a23a5845101d904e27e);
+
+            
+        
+        
+            
+
+            var marker_e4d5ad78fec44e67992965194d9091d9 = L.marker(
+                [40.764329,-73.825796],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(map_aa72766d0c6442b9a7a6b760aeefbf1d);
+            
+        
+            
+            var popup_51f7203283d44a32bc2ebe2ab7f91bc0 = L.popup({maxWidth: '300'});
+
+            
+                var html_95daa35763df48f1a7220f07e31971aa = $('         <div id="html_95daa35763df48f1a7220f07e31971aa"                 style="width: 100.0%; height: 100.0%;">                 LAN BABYSHOP           </div>                 ')[0];
+                popup_51f7203283d44a32bc2ebe2ab7f91bc0.setContent(html_95daa35763df48f1a7220f07e31971aa);
+            
+
+            marker_e4d5ad78fec44e67992965194d9091d9.bindPopup(popup_51f7203283d44a32bc2ebe2ab7f91bc0);
+
+            
+        
+        
+            
+
+            var marker_5c14c40224c04491973dd4e2a5139e3e = L.marker(
+                [40.756935,-73.833943],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(map_aa72766d0c6442b9a7a6b760aeefbf1d);
+            
+        
+            
+            var popup_deead08fc0544d1d95e58990cb3036e4 = L.popup({maxWidth: '300'});
+
+            
+                var html_5113fb15aab54bfdbab6a974a9920cd6 = $('         <div id="html_5113fb15aab54bfdbab6a974a9920cd6"                 style="width: 100.0%; height: 100.0%;">                 SKY FOODS MARKET       </div>                 ')[0];
+                popup_deead08fc0544d1d95e58990cb3036e4.setContent(html_5113fb15aab54bfdbab6a974a9920cd6);
+            
+
+            marker_5c14c40224c04491973dd4e2a5139e3e.bindPopup(popup_deead08fc0544d1d95e58990cb3036e4);
+
+            
+        
+        
+            
+
+            var marker_5cdf4e5dc13641a8a3758951029233f3 = L.marker(
+                [40.75326,-73.82731],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(map_aa72766d0c6442b9a7a6b760aeefbf1d);
+            
+        
+            
+            var popup_99da2106ed6e4c049989880cb852440c = L.popup({maxWidth: '300'});
+
+            
+                var html_0fc8b023a76e47b1b95cb1eae8b0576a = $('         <div id="html_0fc8b023a76e47b1b95cb1eae8b0576a"                 style="width: 100.0%; height: 100.0%;">                 MAMABABY               </div>                 ')[0];
+                popup_99da2106ed6e4c049989880cb852440c.setContent(html_0fc8b023a76e47b1b95cb1eae8b0576a);
+            
+
+            marker_5cdf4e5dc13641a8a3758951029233f3.bindPopup(popup_99da2106ed6e4c049989880cb852440c);
+
+            
+        
+        
+            
+
+            var marker_63c9f861ee6544ccb3934c8c3a29fe3b = L.marker(
+                [40.756935,-73.833943],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(map_aa72766d0c6442b9a7a6b760aeefbf1d);
+            
+        
+            
+            var popup_381fde2f7ddc48d9a39fdbe5034ac968 = L.popup({maxWidth: '300'});
+
+            
+                var html_4c0a46d295014e51a27c1a4f46012a86 = $('         <div id="html_4c0a46d295014e51a27c1a4f46012a86"                 style="width: 100.0%; height: 100.0%;">                 TARGET #2451           </div>                 ')[0];
+                popup_381fde2f7ddc48d9a39fdbe5034ac968.setContent(html_4c0a46d295014e51a27c1a4f46012a86);
+            
+
+            marker_63c9f861ee6544ccb3934c8c3a29fe3b.bindPopup(popup_381fde2f7ddc48d9a39fdbe5034ac968);
+
+            
+        
+        
+            
+
+            var marker_572dac7ec95d48d78c79633493bdcc99 = L.marker(
+                [40.793815,-73.825532],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(map_aa72766d0c6442b9a7a6b760aeefbf1d);
+            
+        
+            
+            var popup_d7b29261be6d431aa185ff240deeb202 = L.popup({maxWidth: '300'});
+
+            
+                var html_563ca010837c4ea9a9391aaa91e658bd = $('         <div id="html_563ca010837c4ea9a9391aaa91e658bd"                 style="width: 100.0%; height: 100.0%;">                 GOOD FORTUNE SUPERMARKE</div>                 ')[0];
+                popup_d7b29261be6d431aa185ff240deeb202.setContent(html_563ca010837c4ea9a9391aaa91e658bd);
+            
+
+            marker_572dac7ec95d48d78c79633493bdcc99.bindPopup(popup_d7b29261be6d431aa185ff240deeb202);
+
+            
+        
+        
+            
+
+            var marker_f2d229e26e8c42019e10835cf3873c9f = L.marker(
+                [40.773053,-73.750431],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(map_aa72766d0c6442b9a7a6b760aeefbf1d);
+            
+        
+            
+            var popup_e5be2babf8ee410e8750c28f67119a5a = L.popup({maxWidth: '300'});
+
+            
+                var html_031cbb390c864482a5b1dcb230585154 = $('         <div id="html_031cbb390c864482a5b1dcb230585154"                 style="width: 100.0%; height: 100.0%;">                 DIYA DELI&amp;CONV         </div>                 ')[0];
+                popup_e5be2babf8ee410e8750c28f67119a5a.setContent(html_031cbb390c864482a5b1dcb230585154);
+            
+
+            marker_f2d229e26e8c42019e10835cf3873c9f.bindPopup(popup_e5be2babf8ee410e8750c28f67119a5a);
+
+            
+        
+        
+            
+
+            var marker_cb4a95fdeae04f9ca81f445078bd8907 = L.marker(
+                [40.769243,-73.833722],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(map_aa72766d0c6442b9a7a6b760aeefbf1d);
+            
+        
+            
+            var popup_720a354d71dc424a9982483993e09a4e = L.popup({maxWidth: '300'});
+
+            
+                var html_65c15a8ef6ab40dd9c731528b0e8b50f = $('         <div id="html_65c15a8ef6ab40dd9c731528b0e8b50f"                 style="width: 100.0%; height: 100.0%;">                 STOP &amp; SHOP #2587      </div>                 ')[0];
+                popup_720a354d71dc424a9982483993e09a4e.setContent(html_65c15a8ef6ab40dd9c731528b0e8b50f);
+            
+
+            marker_cb4a95fdeae04f9ca81f445078bd8907.bindPopup(popup_720a354d71dc424a9982483993e09a4e);
+
+            
+        
+        
+            
+
+            var marker_e3efde4751bd43e7a01f21b0d8c63ea0 = L.marker(
+                [40.70873,-73.870515],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(map_aa72766d0c6442b9a7a6b760aeefbf1d);
+            
+        
+            
+            var popup_cee39f9c57d14731844b7073b625658b = L.popup({maxWidth: '300'});
+
+            
+                var html_6fc32336803541f68b1db111ffe2f76a = $('         <div id="html_6fc32336803541f68b1db111ffe2f76a"                 style="width: 100.0%; height: 100.0%;">                 JIN ZH FA SHENRONG GROC</div>                 ')[0];
+                popup_cee39f9c57d14731844b7073b625658b.setContent(html_6fc32336803541f68b1db111ffe2f76a);
+            
+
+            marker_e3efde4751bd43e7a01f21b0d8c63ea0.bindPopup(popup_cee39f9c57d14731844b7073b625658b);
+
+            
+        
+        
+            
+
+            var marker_4992f706de25412f8eec1ea4536bf26e = L.marker(
+                [40.7628221,-73.8318684],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(map_aa72766d0c6442b9a7a6b760aeefbf1d);
+            
+        
+            
+            var popup_d2d7c93f64cf4481be6a400747aacfd1 = L.popup({maxWidth: '300'});
+
+            
+                var html_72de153a4461413ebc4d03baf6b4eec8 = $('         <div id="html_72de153a4461413ebc4d03baf6b4eec8"                 style="width: 100.0%; height: 100.0%;">                 GENERAL NUTRITION 1014 </div>                 ')[0];
+                popup_d2d7c93f64cf4481be6a400747aacfd1.setContent(html_72de153a4461413ebc4d03baf6b4eec8);
+            
+
+            marker_4992f706de25412f8eec1ea4536bf26e.bindPopup(popup_d2d7c93f64cf4481be6a400747aacfd1);
+
+            
+        
+        
+            
+
+            var marker_e4c4adaf41bd4a38afa0b937abcaa72d = L.marker(
+                [40.7628221,-73.8318684],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(map_aa72766d0c6442b9a7a6b760aeefbf1d);
+            
+        
+            
+            var popup_0ca352265d1d48458e49139ac80e5d0f = L.popup({maxWidth: '300'});
+
+            
+                var html_b7b30fc86bd447ac8f7dc0bb44f8778e = $('         <div id="html_b7b30fc86bd447ac8f7dc0bb44f8778e"                 style="width: 100.0%; height: 100.0%;">                 NEW YORK TUNG REN TANG </div>                 ')[0];
+                popup_0ca352265d1d48458e49139ac80e5d0f.setContent(html_b7b30fc86bd447ac8f7dc0bb44f8778e);
+            
+
+            marker_e4c4adaf41bd4a38afa0b937abcaa72d.bindPopup(popup_0ca352265d1d48458e49139ac80e5d0f);
+
+            
+        
+        
+            
+
+            var marker_d079bda53f6945318f859878bf9029ad = L.marker(
+                [40.7645847,-73.8240412],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(map_aa72766d0c6442b9a7a6b760aeefbf1d);
+            
+        
+            
+            var popup_955d122c6275479b8e9e343d6fb0136a = L.popup({maxWidth: '300'});
+
+            
+                var html_94207a9e03154a4885e21ced994212fd = $('         <div id="html_94207a9e03154a4885e21ced994212fd"                 style="width: 100.0%; height: 100.0%;">                 HO HANSOL              </div>                 ')[0];
+                popup_955d122c6275479b8e9e343d6fb0136a.setContent(html_94207a9e03154a4885e21ced994212fd);
+            
+
+            marker_d079bda53f6945318f859878bf9029ad.bindPopup(popup_955d122c6275479b8e9e343d6fb0136a);
+
+            
+        
+        
+            
+
+            var marker_168827e6de974a9e87d4903b4bae7a04 = L.marker(
+                [40.7700486,-73.8348861],
+                {
+                    icon: new L.Icon.Default()
+                    }
+                )
+                .addTo(map_aa72766d0c6442b9a7a6b760aeefbf1d);
+            
+        
+            
+            var popup_15487a3cb9254e7fb0075fc897840c47 = L.popup({maxWidth: '300'});
+
+            
+                var html_1fe3137b15954e51b7cf02850e7a5960 = $('         <div id="html_1fe3137b15954e51b7cf02850e7a5960"                 style="width: 100.0%; height: 100.0%;">                 GENERAL NUTRITION 7963 </div>                 ')[0];
+                popup_15487a3cb9254e7fb0075fc897840c47.setContent(html_1fe3137b15954e51b7cf02850e7a5960);
+            
+
+            marker_168827e6de974a9e87d4903b4bae7a04.bindPopup(popup_15487a3cb9254e7fb0075fc897840c47);
+
+            
+        
+        
+            
+                var geo_json_5195e99c4f4646ffb52972d274c177dd = L.geoJson(
+                    {"features": [{"geometry": {"coordinates": [[]], "type": "Polygon"}, "properties": {"style": {"color": "black", "fillColor": "BuPu", "fillOpacity": 0.1, "opactiy": 1.0, "weight": 1}}, "type": "Feature"}, {"geometry": {"coordinates": [[[-73.76452842405877, 40.8711049679166]]], "type": "Polygon"}, "properties": {"style": {"color": "black", "fillColor": "BuPu", "fillOpacity": 0.1, "opactiy": 1.0, "weight": 1}}, "type": "Feature"}, {"geometry": {"coordinates": [[[-73.78275808286408, 40.76350774162226], [-73.75056040984558, 40.773328868920586], [-73.76452842405877, 40.8711049679166], [-73.78392292707375, 40.79911422536535]]], "type": "Polygon"}, "properties": {"style": {"color": "black", "fillColor": "BuPu", "fillOpacity": 0.1, "opactiy": 1.0, "weight": 1}}, "type": "Feature"}, {"geometry": {"coordinates": [[[-73.78275808286408, 40.76350774162226], [-73.75056040984558, 40.773328868920586]]], "type": "Polygon"}, "properties": {"style": {"color": "black", "fillColor": "BuPu", "fillOpacity": 0.1, "opactiy": 1.0, "weight": 1}}, "type": "Feature"}, {"geometry": {"coordinates": [[[-73.811896129948, 40.75494499680689], [-73.8438380030919, 40.72607149586989], [-72.91373965897209, 39.06678851158221], [-73.78258049221944, 40.75603296747166], [-73.8097707596075, 40.7557090289608]]], "type": "Polygon"}, "properties": {"style": {"color": "black", "fillColor": "BuPu", "fillOpacity": 0.1, "opactiy": 1.0, "weight": 1}}, "type": "Feature"}, {"geometry": {"coordinates": [[[-73.8457047860472, 40.72788273228541], [-73.8438380030919, 40.72607149586989], [-72.91373965897209, 39.06678851158221]]], "type": "Polygon"}, "properties": {"style": {"color": "black", "fillColor": "BuPu", "fillOpacity": 0.1, "opactiy": 1.0, "weight": 1}}, "type": "Feature"}, {"geometry": {"coordinates": [[[-73.82584119126706, 40.780267166469045], [-73.78392292707375, 40.79911422536535], [-73.78275808286408, 40.76350774162226], [-73.78258049221944, 40.75603296747166], [-73.8097707596075, 40.7557090289608], [-73.82514645793736, 40.77467615884226]]], "type": "Polygon"}, "properties": {"style": {"color": "black", "fillColor": "BuPu", "fillOpacity": 0.1, "opactiy": 1.0, "weight": 1}}, "type": "Feature"}, {"geometry": {"coordinates": [[[-73.82674516351976, 40.78056846602747], [-73.88471416559308, 40.803384199259874], [-74.19641723837317, 40.93546237522174]]], "type": "Polygon"}, "properties": {"style": {"color": "black", "fillColor": "BuPu", "fillOpacity": 0.1, "opactiy": 1.0, "weight": 1}}, "type": "Feature"}, {"geometry": {"coordinates": [[[-73.83518930335266, 40.76836660011438], [-73.88471416559308, 40.803384199259874], [-73.82674516351976, 40.78056846602747]]], "type": "Polygon"}, "properties": {"style": {"color": "black", "fillColor": "BuPu", "fillOpacity": 0.1, "opactiy": 1.0, "weight": 1}}, "type": "Feature"}, {"geometry": {"coordinates": [[[-73.83118105860103, 40.75409657831274], [-73.8457047860472, 40.72788273228541], [-73.8438380030919, 40.72607149586989], [-73.811896129948, 40.75494499680689], [-73.82223436003646, 40.75792905876996]]], "type": "Polygon"}, "properties": {"style": {"color": "black", "fillColor": "BuPu", "fillOpacity": 0.1, "opactiy": 1.0, "weight": 1}}, "type": "Feature"}, {"geometry": {"coordinates": [[[-73.8241686134234, 40.75930989480018], [-73.82223436003646, 40.75792905876996], [-73.811896129948, 40.75494499680689], [-73.8097707596075, 40.7557090289608], [-73.82514645793736, 40.77467615884226], [-73.82611454493228, 40.77266429687967]]], "type": "Polygon"}, "properties": {"style": {"color": "black", "fillColor": "BuPu", "fillOpacity": 0.1, "opactiy": 1.0, "weight": 1}}, "type": "Feature"}, {"geometry": {"coordinates": [[[-73.8296660823838, 40.76693587078266], [-73.82611454493228, 40.77266429687967], [-73.82514645793736, 40.77467615884226], [-73.82584119126706, 40.780267166469045], [-73.82674516351976, 40.78056846602747], [-73.83518930335266, 40.76836660011438], [-73.83367820143309, 40.76577764314016]]], "type": "Polygon"}, "properties": {"style": {"color": "black", "fillColor": "BuPu", "fillOpacity": 0.1, "opactiy": 1.0, "weight": 1}}, "type": "Feature"}, {"geometry": {"coordinates": [[[-73.83776950688829, 40.761592543947856], [-73.87684768317452, 40.75151011603689], [-74.19641723837317, 40.93546237522174], [-73.88471416559308, 40.803384199259874], [-73.83518930335266, 40.76836660011438], [-73.83367820143309, 40.76577764314016]]], "type": "Polygon"}, "properties": {"style": {"color": "black", "fillColor": "BuPu", "fillOpacity": 0.1, "opactiy": 1.0, "weight": 1}}, "type": "Feature"}, {"geometry": {"coordinates": [[[-73.82893991632065, 40.76400961767899], [-73.83603777903672, 40.76098228718292], [-73.83177784993516, 40.7594213690148], [-73.82820672968013, 40.76126619802102]]], "type": "Polygon"}, "properties": {"style": {"color": "black", "fillColor": "BuPu", "fillOpacity": 0.1, "opactiy": 1.0, "weight": 1}}, "type": "Feature"}, {"geometry": {"coordinates": [[[-73.82820672968013, 40.76126619802102], [-73.8241686134234, 40.75930989480018], [-73.82223436003646, 40.75792905876996], [-73.83118105860103, 40.75409657831274], [-73.83177784993516, 40.7594213690148]]], "type": "Polygon"}, "properties": {"style": {"color": "black", "fillColor": "BuPu", "fillOpacity": 0.1, "opactiy": 1.0, "weight": 1}}, "type": "Feature"}, {"geometry": {"coordinates": [[[-73.83603777903672, 40.76098228718292], [-73.83776950688829, 40.761592543947856], [-73.87684768317452, 40.75151011603689], [-73.8457047860472, 40.72788273228541], [-73.83118105860103, 40.75409657831274], [-73.83177784993516, 40.7594213690148]]], "type": "Polygon"}, "properties": {"style": {"color": "black", "fillColor": "BuPu", "fillOpacity": 0.1, "opactiy": 1.0, "weight": 1}}, "type": "Feature"}, {"geometry": {"coordinates": [[[-73.82893991632065, 40.76400961767899], [-73.8296660823838, 40.76693587078266], [-73.83367820143309, 40.76577764314016], [-73.83776950688829, 40.761592543947856], [-73.83603777903672, 40.76098228718292]]], "type": "Polygon"}, "properties": {"style": {"color": "black", "fillColor": "BuPu", "fillOpacity": 0.1, "opactiy": 1.0, "weight": 1}}, "type": "Feature"}], "type": "FeatureCollection"})
+                    .addTo(map_aa72766d0c6442b9a7a6b760aeefbf1d);
+                geo_json_5195e99c4f4646ffb52972d274c177dd.setStyle(function(feature) {return feature.properties.style;});
+            
+        
+        
+        </script>
+        
