@@ -10,11 +10,12 @@ types:
 - K-8
 - K-12 all grades
 - Secondary School
+
+csv file was from http://schools.nyc.gov/Offices/EnterpriseOperations/DIIT/OOD/default.htm
 """
 
 import pandas as pd
 import folium
-from folium.plugins import MarkerCluster
 
 schools = pd.read_csv('../data/DOE_Schools_Report.csv')
 queensSchools = schools[schools['City'] == 'QUEENS']
@@ -53,4 +54,4 @@ for index, row in queensSchools.iterrows():
 schoolsMap.choropleth(geo_path='../data/2014-2015_School_Zones.geojson',
                     fill_color='grey', fill_opacity=0.15, line_opacity=0.3)
 
-schoolsMap.save(outfile='../html/nyc_schools.html')
+schoolsMap.save(outfile='../html/nyc-schools.html')
