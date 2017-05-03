@@ -142,6 +142,36 @@ feature_collection = FeatureCollection(feature_list)
 print(feature_collection, file=flushingJSON)
 flushingJSON.close()
 
+def filterDist(dist):
+    if "PARK" in dist:
+        return 0
+    elif "R" in dist:
+        retVal = ""
+        for char in dist:
+            if char=='-':
+                break
+            if char.isdigit():
+                retVal+=char
+        return int(retVal)
+    elif "C" in dist:
+        return 0
+    else:
+        return 0
+
+zones = pd.read_csv('../data/zoneDist.csv')
+zones['Residential Densities'] = zones['Zoning Districts'].apply(filterDist)
+
+storesCoronaMap.choropleth(geo_path="../data/zoningIDs.json", fill_color='GnBu', fill_opacity=0.7, line_color='white', line_weight=1, 
+    #threshold_scale=[1,2,3,4,5,6,7,8,9,10], 
+    data=zones,
+    key_on='feature.properties.arbID', 
+    columns=['arbID', 'Residential Densities'])
+
+storesFlushingMap.choropleth(geo_path="../data/zoningIDs.json", fill_color='GnBu', fill_opacity=0.7, line_color='white', line_weight=1,
+    #threshold_scale=[1,2,3,4,5,6,7,8,9,10], 
+    data=zones,
+    key_on='feature.properties.arbID', 
+    columns=['arbID', 'Residential Densities'])
 
 storesCoronaMap.geo_json(geo_path='coronaVor.json', fill_color = "BuPu", fill_opacity=0.10, line_opacity=1.00)
 storesFlushingMap.geo_json(geo_path='flushingVor.json', fill_color = "BuPu", fill_opacity=0.10, line_opacity=1.00)
