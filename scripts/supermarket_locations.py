@@ -8,6 +8,7 @@
 import requests
 import re
 import folium
+from geopy import GoogleV3
 from geopy.geocoders import Nominatim
 from folium.plugins import MarkerCluster
 import time
@@ -15,11 +16,11 @@ from geopy.exc import GeocoderTimedOut
 from geopy.exc import GeocoderServiceError
 
 #Generate all the links
-numRestaurants = 471
+numRestaurants = 92
 links = []
 
 for i in list(range(0,numRestaurants,10)):
-	link = "https://www.yelp.com/search?find_desc=supermarkets&find_loc=Flushing,+Queens,+NY&start=" + str(i)
+	link = "https://www.yelp.com/search?find_desc=supermarkets&find_loc=11354,11355,+New+York,+NY&start=" + str(i)
 	links.append(link)
 
 #Scrape for all addresses
@@ -48,7 +49,7 @@ for i in links:
 #Map all addresses
 coords = []
 NoneType = []
-geolocator = Nominatim()
+geolocator = GoogleV3() # Nominatim()
 
 for i in addresses:
 	try: 
@@ -67,6 +68,7 @@ for i in addresses:
 			print("Timed out with address %s"%i)
 	except GeocoderServiceError as e:
 		print("Server bugged with address %s"%i)
+
 
 mapRestaurants = folium.Map(location=[40.77, -73.83], zoom_start=13, tiles="Cartodb Positron")
 mapRestaurants.add_children(MarkerCluster(locations=coords))
