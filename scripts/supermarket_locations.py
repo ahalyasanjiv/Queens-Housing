@@ -27,6 +27,13 @@ for i in list(range(0,numRestaurants,10)):
 addresses = []
 names = []
 
+#All supermarkets have a name
+#Some supermarkets are located within other supermarkets (i.e. within New World Mall)
+#In these specific cases, there is no given address for the supermarket
+#In order to keep a 1-to-1 correspondence of names and addresses so we have a proper map, we discard these no address supermarkets
+#They are still mapped however, since the host supermarket is still mapped (i.e. New World Mall is still mapped)
+haveNameLFaddress = False
+
 for i in links:
 	html = requests.get(i).text
 	lines = html.split("\n")
@@ -35,19 +42,12 @@ for i in links:
 	beginIndex = len("><span >")
 	endIndex = len("</span></a>")
 
-	#All supermarkets have a name
-	#Some supermarkets are located within other supermarkets (i.e. within New World Mall)
-	#In these specific cases, there is no given address for the supermarket
-	#In order to keep a 1-to-1 correspondence of names and addresses so we have a proper map, we discard these no address supermarkets
-	#They are still mapped however, since the host supermarket is still mapped (i.e. New World Mall is still mapped)
-	haveNameLFaddress = False
-
 	for index,line in enumerate(lines):
 
 		matchName = re.search(r"><span >(.*)/span></a>", line)
 		if matchName != None:
 			name = str(matchName.group())
-			#similar to the address on the html that is on every single page, we take its name also
+			#some name (below) is on the html of every single page, we ignore this
 			if name == "><span >NY Convenience Store &amp; Deli</span></a>":
 				pass
 			else:
@@ -66,7 +66,7 @@ for i in links:
 		if matchAddress != None:
 			#address is always on the next line
 			address = lines[index+1]
-			#some address on the html that is on every single page and it obviously does not belong
+			#some address (below) is on the html of every single page and it obviously does not belong (Jamaica)
 			if address == "        14692 Guy R Brewer Blvd<br>Jamaica, NY 11434":
 				pass
 			else:
