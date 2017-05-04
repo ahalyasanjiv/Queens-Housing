@@ -212,3 +212,74 @@ for index, row in flushingComplaints1000.iterrows():
         flushingComplaints1000 = flushingComplaints1000.append(randomRow)
 
 flushingMap.save(outfile='../html/flushing-311-calls.html')
+
+# making map of all three neighborhoods' complaints
+# using clustered markers
+from folium.plugins import MarkerCluster
+
+coords = []
+popups = []
+icons = []
+
+complaintsMap = folium.Map(location=[40.7599029,-73.843553], zoom_start=14)
+# take a random sample of 1000 complaints
+wpComplaints1000 = wpComplaints.sample(n=1000)
+coronaComplaints1000 = coronaComplaints.sample(n=1000)
+flushingComplaints1000 = flushingComplaints.sample(n=1000)
+# print(flushingComplaints1000)
+frames = [wpComplaints1000, coronaComplaints1000, flushingComplaints1000]
+complaints3000 = pd.concat(frames)
+# print(complaints3000)
+
+for index, row in complaints3000.iterrows():
+    # make sure we do not stop even when we 
+    # encounter a row without coordinates
+    if (not math.isnan(row['Latitude'])):
+        lat = float(row['Latitude'])
+        lon = float(row['Longitude'])
+        coords.append([lat, lon])
+        name = row['Complaint Type']
+        popups.append(name)
+
+        if name == 'Street Condition':
+            color = 'red'
+        elif name == 'Street Light Condition':
+            color = 'blue'
+        elif name == 'Traffic Signal Condition':
+            color = 'gray'
+        elif name == 'Noise - Street/Sidewalk':
+            color = 'darkred'
+        elif name == 'Noise - Residential':
+            color = 'lightred'
+        elif name == 'Water System':
+            color = 'orange'
+        elif name == 'Sewer':
+            color = 'beige'
+        elif name == 'HEAT/HOT WATER':
+            color = 'green'
+        elif name == 'HEATING':
+            color = 'darkgreen'
+        elif name == 'PLUMBING':
+            color = 'lightgreen'
+        elif name == 'Derelict Vehicles':
+            color = 'darkblue'
+        elif name == 'Highway Condition':
+            color = 'lightblue'
+        elif name == 'Illegal Parking':
+            color = 'purple'
+        elif name == 'Broken Muni Meter':
+            color = 'darkpurple'
+        elif name == 'Blocked Driveway':
+            color = 'pink'
+        elif name == 'Dirty Conditions':
+            color = 'cadetblue'
+        elif name == 'Building/Use':
+            color = 'black'
+        else:
+            color = 'lightgray'
+
+        icons.append(color)
+
+complaintsMap.add_children(MarkerCluster(locations=coords,
+    popups=popups, icons=icons))
+complaintsMap.save(outfile='../html/queens-311-calls.html')
