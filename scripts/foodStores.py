@@ -141,7 +141,7 @@ def flushing():
     global point_voronoi_list
     global feature_list
 
-    storesFlushingMap = folium.Map(location=[40.7599029,-73.843553], zoom_start=13)
+    storesFlushingMap = folium.Map(location=[40.7599689,-73.8275091], zoom_start=15)
 
     # store coords for voronoi
     coordsFlushing = []
