@@ -161,7 +161,7 @@ def flushing():
     #All supermarkets have a name
     #Some supermarkets are located within other supermarkets (i.e. within New World Mall)
     #In these specific cases, there is no given address for the supermarket
-    #In order to keep a 1-to-1 correspondence of names and addresses so we have a proper map, we discard these no address supermarkets
+    #In order to keep a 1-to-1 correspondence of names and addresses so we have a proper map, we discard these "no address" supermarkets
     #They are still mapped however, since the host supermarket is still mapped (i.e. New World Mall is still mapped)
     haveNameLFaddress = False
 
@@ -220,6 +220,7 @@ def flushing():
                     coordsFlushing.append([location.latitude, location.longitude])
                     storesFlushingMap.add_child(folium.Marker(location=[location.latitude, location.longitude],
                                             popup =(folium.Popup(names[addresses.index(i)]))))
+                    #This restricts a maximum of 1 request per second
                     time.sleep(1)
                 #Improper formatting of addresses cannot be mapped (thanks Yelp)
                 else:
