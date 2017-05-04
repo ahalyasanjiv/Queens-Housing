@@ -12,9 +12,10 @@ from geopy.geocoders import Nominatim
 from folium.plugins import MarkerCluster
 import time
 from geopy.exc import GeocoderTimedOut
+from geopy.exc import GeocoderServiceError
 
 #Generate all the links
-numRestaurants = 475
+numRestaurants = 471
 links = []
 
 for i in list(range(0,numRestaurants,10)):
@@ -50,21 +51,24 @@ NoneType = []
 geolocator = Nominatim()
 
 for i in addresses:
-	try:
-		location = geolocator.geocode(i)
-		if type(location) != type(None):
-			coords.append([location.longitude, location.latitude])
-			print("Valid count: %d, address: %s"%(len(coords),i))
-			time.sleep(1)
-		#Improper formatting of addresses cannot be mapped (thanks Yelp)
-		else:
-			NoneType.append(i)
-			print("Invalid count: %d, address: %s"%(len(NoneType),i))
-			time.sleep(1)
-	except GeocoderTimedOut as e:
-		print("Timed out with address %s"%i)
+	try: 
+		try:
+			location = geolocator.geocode(i)
+			if type(location) != type(None):
+				coords.append([location.latitude, location.longitude])
+				print("Valid count: %d, address: %s"%(len(coords),i))
+				time.sleep(1)
+			#Improper formatting of addresses cannot be mapped (thanks Yelp)
+			else:
+				NoneType.append(i)
+				print("Invalid count: %d, address: %s"%(len(NoneType),i))
+				time.sleep(1)
+		except GeocoderTimedOut as e:
+			print("Timed out with address %s"%i)
+	except GeocoderServiceError as e:
+		print("Server bugged with address %s"%i)
 
-mapRestaurants = folium.Map([40.77, -73.83], zoom_start=13)
+mapRestaurants = folium.Map(location=[40.77, -73.83], zoom_start=13, tiles="Cartodb Positron")
 mapRestaurants.add_children(MarkerCluster(locations=coords))
 mapRestaurants.save(outfile="supermarket_locations.html")
 
