@@ -16,40 +16,52 @@ csv file was from http://schools.nyc.gov/Offices/EnterpriseOperations/DIIT/OOD/d
 
 import pandas as pd
 import folium
+from pygeocoder import Geocoder
 
 schools = pd.read_csv('../data/DOE_Schools_Report.csv')
 queensSchools = schools[schools['City'] == 'QUEENS']
+# print(queensSchools)
 schoolsMap = folium.Map(location=[40.7599029,-73.843553], zoom_start=15)
 
 for index, row in queensSchools.iterrows():
-    lat = row['Latitude']
-    lon = row['Longitude']
-    name = row['Location Name']
-    level = row['Location Category Description']
+    try:
+        # get the coordinates for the address
+        address = str(row['Primary Address']) + ' ' + str(row['Zip'])
+        results = Geocoder.geocode(address)
+        coords = results[0].coordinates
+        lat = coords[0]
+        lon = coords[1]
 
-    if level == 'Early Childhood':
-        color = 'pink'
-    elif level == 'District Pre-K Center':
-        color == 'red'
-    elif level == 'Elementary':
-        color = 'orange'
-    elif level == 'Junior High-Intermediate-Middle':
-        color = 'yellow'
-    elif level == 'High school':
-        color = 'green'
-    elif level == 'K-8':
-        color = 'blue'
-    elif level == 'K-12 all grades':
-        color = 'purple'
-    elif level == 'Secondary School':
-        color = 'darkblue'
-    else: # just in case we missed a type of school
-        print(level)
+        name = row['Location Name']
+        level = row['Location Category Description']
+
+        if level == 'Early Childhood':
+            color = 'pink'
+        elif level == 'District Pre-K Center':
+            color == 'red'
+        elif level == 'Elementary':
+            color = 'orange'
+        elif level == 'Junior High-Intermediate-Middle':
+            color = 'yellow'
+        elif level == 'High school':
+            color = 'green'
+        elif level == 'K-8':
+            color = 'blue'
+        elif level == 'K-12 all grades':
+            color = 'purple'
+        elif level == 'Secondary School':
+            color = 'darkblue'
+        else: # just in case we missed a type of school
+            print(level)
+            continue
+
+        schoolsMap.add_child(folium.Marker(location=[lat, lon],
+            popup=(folium.Popup(name)),
+            icon=folium.Icon(color=color)))
+
+    except Exception as e:
+        print(e)
         continue
-
-    schoolsMap.add_child(folium.Marker(location=[lat, lon],
-        popup=(folium.Popup(name)),
-        icon=folium.Icon(color=color)))
 
 schoolsMap.choropleth(geo_path='../data/2014-2015_School_Zones.geojson',
                     fill_color='grey', fill_opacity=0.15, line_opacity=0.3)
