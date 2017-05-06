@@ -41,10 +41,14 @@ feature_list = []
 zones = pd.read_csv('../data/zoneDist.csv')
 zones['Residential Densities'] = zones['Zoning Districts'].apply(filterDist)
 
+settings = 0
+storesWilletsMap = folium.Map(location=[40.7537914,-73.8424372], zoom_start=14)
+coordsCorona = []
 def main():
+    global settings
     settings = 0
     while(not(1<=settings<=3)):
-        settings = int(input("Generate Corona (1), Flushing(2), or both(3)?: "))
+        settings = int(input("Generate Corona (1), Flushing(2), or both together(3)?: "))
 
         if settings == 1:
             corona()
@@ -57,17 +61,23 @@ def corona():
     global zones
     global point_voronoi_list
     global feature_list
+    global settings
+    global storesWilletsMap
+    global coordsCorona
 
     # used to get coordinates from address if coordinates are not given
     geolocator = Nominatim()
 
     stores = pd.read_csv('../data/Retail_Food_Stores.csv')
 
+    storesCoronaMap = None
     # filter the stores
     queensStores = stores[stores['County'] == 'Queens']
     storesNearCorona = queensStores[(queensStores['Zip Code'] == 11368)]
-
-    storesCoronaMap = folium.Map(location=[40.7599029,-73.843553], zoom_start=13)
+    if settings != 3:
+        storesCoronaMap = folium.Map(location=[40.7599029,-73.843553], zoom_start=13)
+    else:
+        storesCoronaMap = storesWilletsMap
     # store coords for voronoi
     coordsCorona = []
 
@@ -100,49 +110,56 @@ def corona():
                     coordsCorona.append([lat,lon])
             except:
                 continue
-
-    vorCorona = Voronoi(coordsCorona)
-    coronaJSON = open('coronaVor.json', 'w')
     
-    point_voronoi_list.clear()
-    feature_list.clear()
-    for region in range(len(vorCorona.regions)-1):
-        vertex_list = []
-        for x in vorCorona.regions[region]:
-            # ignore "infinite" point
-            if x == -1:
-                break
-            else:
-                # flip order of vertices
-                vertex = vorCorona.vertices[x]
-                vertex = (vertex[1], vertex[0])
-            vertex_list.append(vertex)
-        # save vertices as polygon
-        polygon = Polygon([vertex_list])
-        feature = Feature(geometry=polygon, properties={})
-        feature_list.append(feature)
+    if settings != 3:
+        vorCorona = Voronoi(coordsCorona)
+        coronaJSON = open('coronaVor.json', 'w')
+        
+        point_voronoi_list.clear()
+        feature_list.clear()
+        for region in range(len(vorCorona.regions)-1):
+            vertex_list = []
+            for x in vorCorona.regions[region]:
+                # ignore "infinite" point
+                if x == -1:
+                    break
+                else:
+                    # flip order of vertices
+                    vertex = vorCorona.vertices[x]
+                    vertex = (vertex[1], vertex[0])
+                vertex_list.append(vertex)
+            # save vertices as polygon
+            polygon = Polygon([vertex_list])
+            feature = Feature(geometry=polygon, properties={})
+            feature_list.append(feature)
 
-    feature_collection = FeatureCollection(feature_list)
-    print(feature_collection, file=coronaJSON)
-    coronaJSON.close()
+        feature_collection = FeatureCollection(feature_list)
+        print(feature_collection, file=coronaJSON)
+        coronaJSON.close()
 
     storesCoronaMap.choropleth(geo_path="../data/zoningIDs.json", fill_color='GnBu', fill_opacity=0.7, line_color='white', line_weight=1, 
         #threshold_scale=[1,2,3,4,5,6,7,8,9,10], 
         data=zones,
         key_on='feature.properties.arbID', 
         columns=['arbID', 'Residential Densities'])
-
-    storesCoronaMap.geo_json(geo_path='coronaVor.json', fill_color = "BuPu", fill_opacity=0.10, line_opacity=1.00)
-    storesCoronaMap.save(outfile='../html/voronoi-food-stores-corona.html')
+    if settings != 3:
+        storesCoronaMap.geo_json(geo_path='coronaVor.json', fill_color = "BuPu", fill_opacity=0.10, line_opacity=1.00)
+        storesCoronaMap.save(outfile='../html/voronoi-food-stores-corona.html')
 
 
 def flushing():
     global zones
     global point_voronoi_list
     global feature_list
+    global settings
+    global storesWilletsMap
 
-    storesFlushingMap = folium.Map(location=[40.7599689,-73.8275091], zoom_start=15)
+    storesFlushingMap = None
 
+    if settings != 3:
+        storesFlushingMap = folium.Map(location=[40.7599689,-73.8275091], zoom_start=15)
+    else:
+        storesFlushingMap = storesWilletsMap
     # store coords for voronoi
     coordsFlushing = []
 
@@ -231,7 +248,9 @@ def flushing():
                 print("Timed out with address %s"%i)
         except GeocoderServiceError as e:
             print("Server bugged with address %s"%i)
-
+    # combine if map both neighborhoods
+    if settings == 3: 
+        coordsFlushing = coordsFlushing + coordsCorona
     vorFlushing = Voronoi(coordsFlushing)
     flushingJSON = open('flushingVor.json', 'w')
 
@@ -257,15 +276,18 @@ def flushing():
     print(feature_collection, file=flushingJSON)
     flushingJSON.close()
 
-    storesFlushingMap.choropleth(geo_path="../data/zoningIDs.json", fill_color='GnBu', fill_opacity=0.7, line_color='white', line_weight=1,
-        #threshold_scale=[1,2,3,4,5,6,7,8,9,10], 
-        data=zones,
-        key_on='feature.properties.arbID',
-        columns=['arbID', 'Residential Densities']) 
+    if settings != 3:
+        storesFlushingMap.choropleth(geo_path="../data/zoningIDs.json", fill_color='GnBu', fill_opacity=0.7, line_color='white', line_weight=1,
+            #threshold_scale=[1,2,3,4,5,6,7,8,9,10], 
+            data=zones,
+            key_on='feature.properties.arbID',
+            columns=['arbID', 'Residential Densities']) 
 
     storesFlushingMap.geo_json(geo_path='flushingVor.json', fill_color = "BuPu", fill_opacity=0.10, line_opacity=1.00)
-    storesFlushingMap.save(outfile='../html/voronoi-food-stores-flushing.html')
-
+    if settings != 3:
+        storesFlushingMap.save(outfile='../html/voronoi-food-stores-flushing.html')
+    else:
+        storesFlushingMap.save(outfile='../html/voronoi-food-stores-willets-point.html')
 
 
 if __name__ == "__main__":
